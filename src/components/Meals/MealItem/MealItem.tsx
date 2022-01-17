@@ -1,6 +1,7 @@
 import { FC } from 'react'
 
 import MealItemForm from './MealItemForm'
+import { useCartContext } from '../../../store/CartProvider'
 import classes from './MealItem.module.css'
 
 interface Props {
@@ -11,7 +12,17 @@ interface Props {
 }
 
 const MealItem: FC<Props> = (props) => {
+  const { addItem } = useCartContext()
   const price = `${props.price.toFixed(2)}`
+
+  const addToCartHandler = (amount: number) => {
+    addItem({
+      id: props.id,
+      name: props.name,
+      amount: amount,
+      price: props.price,
+    })
+  }
 
   return (
     <li className={classes.meal}>
@@ -21,7 +32,7 @@ const MealItem: FC<Props> = (props) => {
         <div className={classes.price}>{price}</div>
       </div>
       <div>
-        <MealItemForm id={props.id} />
+        <MealItemForm id={props.id} onAddToCart={addToCartHandler} />
       </div>
     </li>
   )
