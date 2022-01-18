@@ -17,15 +17,15 @@ const Cart: FC<Props> = (props) => {
   const hasItems = CartCtx.items.length > 0
 
   const cartItemRemoveHandler = (id: string) => {
-    console.log(id)
+    CartCtx.removeItem(id)
   }
 
   const cartItemAddHandler = (item: CartItemType) => {
-    console.log(item)
+    CartCtx.addItem({ ...item, amount: 1 })
   }
 
   const cartItems = (
-    <li className={classes['cart-items']}>
+    <div className={classes['cart-items']}>
       {CartCtx.items.map((item) => (
         <CartItem
           key={item.id}
@@ -33,11 +33,11 @@ const Cart: FC<Props> = (props) => {
           name={item.name}
           amount={item.amount}
           price={item.price}
-          onRemove={cartItemRemoveHandler.bind(null, item.id)}
           onAdd={cartItemAddHandler.bind(null, item)}
+          onRemove={cartItemRemoveHandler.bind(null, item.id)}
         />
       ))}
-    </li>
+    </div>
   )
 
   return (
