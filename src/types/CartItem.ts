@@ -1,4 +1,4 @@
-export default interface CartItem {
+export default interface CartItemType {
   id: string
   name: string
   amount: number

@@ -1,10 +1,10 @@
 import { createContext } from 'react'
-import CartItem from '../types/CartItem'
+import CartItemType from '../types/CartItem'
 
 export interface CartContextType {
-  items: CartItem[]
+  items: CartItemType[]
   totalAmount: number
-  addItem: (item: CartItem) => void
+  addItem: (item: CartItemType) => void
   removeItem: (id: string) => void
 }
 

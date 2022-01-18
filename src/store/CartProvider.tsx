@@ -1,15 +1,15 @@
 import { FC, useContext, useReducer } from 'react'
 import CartContext, { CartContextType } from './cart-context'
 
-import CartItem from '../types/CartItem'
+import CartItemType from '../types/CartItem'
 
 const defaultCartState = {
   items: [],
   totalAmount: 0,
 }
 const cartReducer = (
-  state: { items: CartItem[]; totalAmount: number },
-  action: { type: string; item?: CartItem; id?: string },
+  state: { items: CartItemType[]; totalAmount: number },
+  action: { type: string; item?: CartItemType; id?: string },
 ) => {
   switch (action.type) {
     case 'ADD':
@@ -32,7 +32,7 @@ export const CartProvider: FC = (props) => {
     defaultCartState,
   )
 
-  const addItemToCartHandler = (item: CartItem) => {
+  const addItemToCartHandler = (item: CartItemType) => {
     dispatchCartAction({ type: 'ADD', item: item })
   }
 
